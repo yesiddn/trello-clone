@@ -1,0 +1,122 @@
+<nav class="bg-sky-700 border-gray-200 px-6 shadow-md">
+  <div class="flex flex-wrap justify-between items-center">
+    <div class="flex items-center">
+      <a routerLink="/">
+        <img
+          loading="lazy"
+          class="w-20 mr-8"
+          src="/images/logo/logo-gradient-white-trello.png"
+          alt="logo"
+        />
+      </a>
+      <div class="flex items-center">
+        <ul class="flex items-center space-x-2 text-sm font-medium">
+          <li>
+            <a class="block py-3 px-4 text-white">Workspaces</a>
+          </li>
+          <li>
+            <a class="block py-3 px-4 text-white">Recent</a>
+          </li>
+          <li>
+            <app-btn typeBtn="button" color="primary">Create</app-btn>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex items-center">
+      <!-- se crea el evento para cambiar el estado, se agrega la propiedad cdkOverlayOrigin y en el # se agrega un nombre para poder referenciarlo (en la documeción se usa #trigger) y se le asigna cdkOverlayOrigin que no cambia -->
+      <button
+        type="button"
+        class="flex rounded-full"
+        aria-expanded="false"
+        type="button"
+        (click)="isOpen = !isOpen"
+        cdkOverlayOrigin
+        #menuOverlay="cdkOverlayOrigin"
+      >
+        <img
+          class="w-8 h-8 rounded-full"
+          src="https://api.lorem.space/image/face?w=150&h=150"
+          alt="user photo"
+        />
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- se crea el template que se va a mostrar cuando se haga click en el boton y se envian las propiedades cdkConnectedOverlay y cdkConnectedOverlayOrigin en el que se le asigna el nombre que se le asigno en el #, y en cdkConnectedOverlayOpen se le asigna la variable que se va a cambiar que cambia el estado, ademas de otras propiedades que le dan funcionalidad al template -->
+<!-- (backdropClick)="isOpen = false"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  (detach)="isOpen = false" -->
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="menuOverlay"
+  [cdkConnectedOverlayOpen]="isOpen"
+>
+  <div
+    class="z-50 my-4 w-60 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
+  >
+    <div class="py-3 px-4 flex justify-between">
+      <span class="block text-sm text-center text-gray-900">Account</span>
+      <button (click)="isOpen = !isOpen" class="block text-sm text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+      </button>
+    </div>
+    <div class="py-3 px-4 flex items-center space-x-4">
+      <img
+        class="w-10 h-10 rounded-full"
+        src="https://api.lorem.space/image/face?w=400&h=400"
+        alt=""
+      />
+      <div class="space-y-1">
+        <div>Jese Leos</div>
+        <div class="text-sm text-gray-500">nico&#64;gmail.com</div>
+      </div>
+    </div>
+    <ul class="py-1">
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+          >Profile</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+          >Activity</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+          >Cards</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+          >Settings</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+          >Sign out</a
+        >
+      </li>
+    </ul>
+    <ul class="py-1">
+      <li>
+        <a href="#" class="block py-2 px-4 text-sm text-gray-700">Log out</a>
+      </li>
+    </ul>
+  </div>
+</ng-template>
