@@ -10,4 +10,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 })
 export class NavbarComponent {
   isOpen = false;
+  isWorkspaceOpen = false;
+  isRecentOpen = false;
 }
