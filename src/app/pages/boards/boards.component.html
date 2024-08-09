@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="container mx-auto flex mt-10">
-  <div class="w-1/5 mr-4">
+  <div class="w-1/3 lg:w-1/5 mr-4">
     <ul class="flex flex-col font-medium text-gray-700">
       <li>
         <a class="block bg-sky-100 rounded py-1 px-3 text-sky-700"
@@ -19,15 +19,134 @@
         >
       </li>
     </ul>
+
+    <hr class="my-4 border-b-1 border-r-gray-300" />
+    
+    <!-- my version -->
+    <!-- <details>
+      <summary class="cursor-pointer">
+        Workspaces
+      </summary>
+
+      <ul class="ml-2 flex flex-col text-sm text-gray-700">
+        <li>
+          <a class="block py-1 px-3"
+            ><fa-icon [icon]="faTrello"></fa-icon> Boards</a
+          >
+        </li>
+        <li>
+          <a class="block py-1 px-3"
+            ><fa-icon [icon]="faHeart"></fa-icon> Highlights</a
+          >
+        </li>
+        <li>
+          <a class="block py-1 px-3"
+            ><fa-icon [icon]="faBorderAll"></fa-icon> Views</a
+          >
+        </li>
+        <li>
+          <a class="block py-1 px-3"
+            ><fa-icon [icon]="faUsers"></fa-icon> Members</a
+          >
+        </li>
+        <li>
+          <a class="block py-1 px-3"
+            ><fa-icon [icon]="faGear"></fa-icon> Settings</a
+          >
+        </li>
+      </ul>
+    </details> -->
+
+    <!-- angular accorddion -->
+    <cdk-accordion>
+      <!-- Se crea el item con el nombre #accordionMenu para poder acceder a sus propiedades -->
+      <cdk-accordion-item #accordionMenu="cdkAccordionItem">
+        <!-- Contenido visible del accordion -->
+          <h2 class="block font-bold pt-4 pb-2 px-2 text-xs text-blue-950">
+            Workspaces
+          </h2>
+
+          <button type="button" (click)="accordionMenu.toggle()" class="flex justify-between align-center items-center px-2  hover:bg-gray-200 rounded-lg">
+            <div
+              class="flex items-center"
+            >
+              <img
+                class="w-10 h-10 rounded-lg mx-2"
+                src="https://yesiddn.me/assets/img/profile.jpg"
+                alt="yesiddn"
+              />
+              <div class="w-3/4 text-left text-sm block p-2 text-gray-700">
+                My workspace
+              </div>
+            </div>
+
+            <div class="">
+              <fa-icon [icon]="accordionMenu.expanded ? faAngleUp : faAngleDown"></fa-icon>
+            </div>
+          </button>
+          <!-- FIN Contenido visible del accordion -->
+
+          <!-- Parte desplegable -->
+          <!-- si el acordeon esta expandido se muestra el contenido -->
+          <ul
+            [style.display]="accordionMenu.expanded ? '' : 'none' "
+            class="flex flex-col text-sm text-gray-700 mt-1">
+            <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
+              <a class="block py-2 px-3 ml-5"
+                ><fa-icon [icon]="faTrello" class="mr-3.5"></fa-icon> Boards</a
+              >
+            </li>
+            <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
+              <a class="block py-2 px-3 ml-5"
+                ><fa-icon [icon]="faHeart" class="mr-3"></fa-icon> Highlights</a
+              >
+            </li>
+            <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
+              <a class="block py-2 px-3 ml-5"
+                ><fa-icon [icon]="faBorderAll" class="mr-3.5"></fa-icon> Views</a
+              >
+            </li>
+            <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
+              <a class="block py-2 px-3 ml-5"
+                ><fa-icon [icon]="faUsers" class="mr-2"></fa-icon> Members</a
+              >
+            </li>
+            <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
+              <a class="block py-2 px-3 ml-5"
+                ><fa-icon [icon]="faGear" class="mr-3"></fa-icon> Settings</a
+              >
+            </li>
+          </ul>
+          <!-- FIN Parte desplegable -->
+      </cdk-accordion-item>
+    </cdk-accordion>
   </div>
 
   <div class="w-full">
-    <h1 class="text-lg font-bold mb-4"><fa-icon [icon]="faClock"></fa-icon> Recently viewed</h1>
+    <h1 class="text-lg font-bold mb-4">
+      <fa-icon [icon]="faClock"></fa-icon> Recently viewed
+    </h1>
     <div class="grid grid-cols-4 gap-4">
-      <div class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-32">Board 1</div>
-      <div class="w-full bg-green-700 px-4 py-2 rounded text-white font-bold h-32">Board 1</div>
-      <div class="w-full bg-amber-700 px-4 py-2 rounded text-white font-bold h-32">Board 1</div>
-      <div class="w-full bg-indigo-700 px-4 py-2 rounded text-white font-bold h-32">Board 1</div>
+      <div
+        class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-32"
+      >
+        Board 1
+      </div>
+      <div
+        class="w-full bg-green-700 px-4 py-2 rounded text-white font-bold h-32"
+      >
+        Board 1
+      </div>
+      <div
+        class="w-full bg-amber-700 px-4 py-2 rounded text-white font-bold h-32"
+      >
+        Board 1
+      </div>
+      <div
+        class="w-full bg-indigo-700 px-4 py-2 rounded text-white font-bold h-32"
+      >
+        Board 1
+      </div>
     </div>
   </div>
 </div>
