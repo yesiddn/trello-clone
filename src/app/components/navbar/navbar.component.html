@@ -22,6 +22,7 @@
               #workspaceOverlay="cdkOverlayOrigin"
             >
               Workspaces
+              <fa-icon [icon]="faChevronDown"></fa-icon>
             </button>
           </li>
           <li>
@@ -35,6 +36,7 @@
               #recentOverlay="cdkOverlayOrigin"
             >
               Recent
+              <fa-icon [icon]="faChevronDown"></fa-icon>
             </button>
           </li>
           <li>
@@ -43,7 +45,13 @@
         </ul>
       </div>
     </div>
-    <div class="flex items-center">
+    <div class="flex items-center gap-2">
+      <button class="text-white">
+        <fa-icon [icon]="fabell"></fa-icon>
+      </button>
+      <button class="text-white">
+        <fa-icon [icon]="faInfoCircle"></fa-icon>
+      </button>
       <!-- se crea el evento para cambiar el estado, se agrega la propiedad cdkOverlayOrigin y en el # se agrega un nombre para poder referenciarlo (en la documeción se usa #trigger) y se le asigna cdkOverlayOrigin que no cambia -->
       <button
         type="button"
