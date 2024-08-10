@@ -21,7 +21,7 @@
     </ul>
 
     <hr class="my-4 border-b-1 border-r-gray-300" />
-    
+
     <!-- my version -->
     <!-- <details>
       <summary class="cursor-pointer">
@@ -62,63 +62,94 @@
       <!-- Se crea el item con el nombre #accordionMenu para poder acceder a sus propiedades -->
       <cdk-accordion-item #accordionMenu="cdkAccordionItem">
         <!-- Contenido visible del accordion -->
-          <h2 class="block font-bold pt-4 pb-2 px-2 text-xs text-blue-950">
-            Workspaces
-          </h2>
+        <h2 class="block font-bold pt-4 pb-2 px-2 text-xs text-blue-950">
+          Workspaces
+        </h2>
 
-          <button type="button" (click)="accordionMenu.toggle()" class="flex justify-between align-center items-center px-2  hover:bg-gray-200 rounded-lg">
-            <div
-              class="flex items-center"
+        <button
+          type="button"
+          (click)="accordionMenu.toggle()"
+          class="flex justify-between align-center items-center px-2 hover:bg-gray-200 rounded-lg"
+        >
+          <div class="flex items-center">
+            <img
+              class="w-10 h-10 rounded-lg mx-2"
+              src="https://yesiddn.me/assets/img/profile.jpg"
+              alt="yesiddn"
+            />
+            <div class="w-3/4 text-left text-sm block p-2 text-gray-700">
+              My workspace
+            </div>
+          </div>
+
+          <div class="">
+            <fa-icon
+              [icon]="accordionMenu.expanded ? faAngleUp : faAngleDown"
+            ></fa-icon>
+          </div>
+        </button>
+        <!-- FIN Contenido visible del accordion -->
+
+        <!-- Parte desplegable -->
+        <!-- si el acordeon esta expandido se muestra el contenido -->
+        <ul
+          [style.display]="accordionMenu.expanded ? '' : 'none'"
+          class="flex flex-col text-sm text-gray-700 mt-1"
+        >
+          <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
+            <a class="block py-2 px-3 ml-5"
+              ><fa-icon [icon]="faTrello" class="mr-3.5"></fa-icon> Boards</a
             >
-              <img
-                class="w-10 h-10 rounded-lg mx-2"
-                src="https://yesiddn.me/assets/img/profile.jpg"
-                alt="yesiddn"
-              />
-              <div class="w-3/4 text-left text-sm block p-2 text-gray-700">
-                My workspace
-              </div>
-            </div>
-
-            <div class="">
-              <fa-icon [icon]="accordionMenu.expanded ? faAngleUp : faAngleDown"></fa-icon>
-            </div>
-          </button>
-          <!-- FIN Contenido visible del accordion -->
-
-          <!-- Parte desplegable -->
-          <!-- si el acordeon esta expandido se muestra el contenido -->
-          <ul
-            [style.display]="accordionMenu.expanded ? '' : 'none' "
-            class="flex flex-col text-sm text-gray-700 mt-1">
-            <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
-              <a class="block py-2 px-3 ml-5"
-                ><fa-icon [icon]="faTrello" class="mr-3.5"></fa-icon> Boards</a
-              >
-            </li>
-            <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
-              <a class="block py-2 px-3 ml-5"
-                ><fa-icon [icon]="faHeart" class="mr-3"></fa-icon> Highlights</a
-              >
-            </li>
-            <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
-              <a class="block py-2 px-3 ml-5"
-                ><fa-icon [icon]="faBorderAll" class="mr-3.5"></fa-icon> Views</a
-              >
-            </li>
-            <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
-              <a class="block py-2 px-3 ml-5"
-                ><fa-icon [icon]="faUsers" class="mr-2"></fa-icon> Members</a
-              >
-            </li>
-            <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
-              <a class="block py-2 px-3 ml-5"
-                ><fa-icon [icon]="faGear" class="mr-3"></fa-icon> Settings</a
-              >
-            </li>
-          </ul>
-          <!-- FIN Parte desplegable -->
+          </li>
+          <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
+            <a class="block py-2 px-3 ml-5"
+              ><fa-icon [icon]="faHeart" class="mr-3"></fa-icon> Highlights</a
+            >
+          </li>
+          <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
+            <a class="block py-2 px-3 ml-5"
+              ><fa-icon [icon]="faBorderAll" class="mr-3.5"></fa-icon> Views</a
+            >
+          </li>
+          <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
+            <a class="block py-2 px-3 ml-5"
+              ><fa-icon [icon]="faUsers" class="mr-2"></fa-icon> Members</a
+            >
+          </li>
+          <li class="hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
+            <a class="block py-2 px-3 ml-5"
+              ><fa-icon [icon]="faGear" class="mr-3"></fa-icon> Settings</a
+            >
+          </li>
+        </ul>
+        <!-- FIN Parte desplegable -->
       </cdk-accordion-item>
+    </cdk-accordion>
+
+    <!-- dynamic accordion -->
+    <cdk-accordion>
+      <h2 class="block font-bold pt-4 pb-2 px-2 text-xs text-blue-950">
+        Dynamic accordion
+      </h2>
+
+      @for (item of items; track $index) {
+      <cdk-accordion-item #accordionItem="cdkAccordionItem">
+        <button
+          class="w-full text-left"
+          type="button"
+          (click)="accordionItem.toggle()"
+        >
+          {{ item.label }}
+        </button>
+        <div [style.display]="accordionItem.expanded ? '' : 'none'">
+          <ul>
+            @for (subItem of item.items; track $index) {
+            <li>{{ subItem.label }}</li>
+            }
+          </ul>
+        </div>
+      </cdk-accordion-item>
+      }
     </cdk-accordion>
   </div>
 
