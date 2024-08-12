@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { Column, ToDo } from '../../model/todo.model';
+import { TodoModalComponent } from '../../components/todo-modal/todo-modal.component';
 
 @Component({
   selector: 'app-board',
@@ -26,6 +28,8 @@ import { Column, ToDo } from '../../model/todo.model';
   ]
 })
 export class BoardComponent {
+  private dialog = inject(Dialog);
+
   columns: Column[] = [
     {
       title: 'To Do',
@@ -87,6 +91,14 @@ export class BoardComponent {
     this.columns.push({
       title: 'New Column',
       todos: []
+    });
+  }
+
+  openDialog() {
+    this.dialog.open(TodoModalComponent, {
+      minWidth: '250px',
+      maxWidth: '50%',
+      // autoFocus: true
     });
   }
 }

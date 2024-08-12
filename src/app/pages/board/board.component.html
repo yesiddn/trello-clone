@@ -96,6 +96,7 @@
           >
             @for (todo of column.todos; track todo.id) {
               <div
+              (click)="openDialog()"
                 cdkDrag
                 class="bg-white shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer hover:bg-gray-400"
               >

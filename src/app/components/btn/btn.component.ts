@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
 })
 export class BtnComponent {
   @Input() typeBtn: ('submit' | 'button' | 'reset') = 'button';
-  @Input() color: ('success' | 'primary' | 'danger') = 'primary';
+  @Input() color: ('success' | 'primary' | 'danger' | 'gray-light') = 'primary';
 
   get colors() {
     // de esta forma hacemos que tailwind incluya las clases de colores en el boundle final y las podamos usar dinamicamente
@@ -25,9 +25,10 @@ export class BtnComponent {
 
     // pero esta forma de hacerlo es mucho mas limpia y mantenible
     const colorsList: { [key: string]: string } = {
-      success: 'bg-success-500 hover:bg-success-600 focus:ring-success-300',
-      danger: 'bg-red-500 hover:bg-red-600 focus:ring-red-300',
-      primary: 'bg-primary-500 hover:bg-primary-600 focus:ring-primary-300',
+      success: 'text-white bg-success-500 hover:bg-success-600 focus:ring-success-300',
+      danger: 'text-white bg-red-500 hover:bg-red-600 focus:ring-red-300',
+      primary: 'text-white bg-primary-500 hover:bg-primary-600 focus:ring-primary-300',
+      'gray-light': 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-100'
     };
     return colorsList[this.color];
   }
