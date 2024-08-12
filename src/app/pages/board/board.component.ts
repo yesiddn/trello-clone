@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { ToDo } from '../../model/todo.model';
+import { Column, ToDo } from '../../model/todo.model';
 
 @Component({
   selector: 'app-board',
@@ -26,28 +26,41 @@ import { ToDo } from '../../model/todo.model';
   ]
 })
 export class BoardComponent {
-  todos: ToDo[] = [
+  columns: Column[] = [
     {
-      id: '1',
-      title: 'Task 1'
+      title: 'To Do',
+      todos: [
+        {
+          id: '1',
+          title: 'Task 1'
+        },
+        {
+          id: '2',
+          title: 'Buy a unicorn'
+        },
+        {
+          id: '3',
+          title: 'Sell a oven'
+        }
+      ]
     },
     {
-      id: '2',
-      title: 'Buy a unicorn'
+      title: 'Doing',
+      todos: [
+        {
+          id: '4',
+          title: 'Task 4'
+        }
+      ]
     },
     {
-      id: '3',
-      title: 'Quitar gasto de spotify en littio'
+      title: 'Done',
+      todos: []
     }
   ];
 
-  doing: ToDo[] = [
-    {
-      id: '4',
-      title: 'Task 4'
-    }
-  ];
-
+  todos: ToDo[] = [];
+  doing: ToDo[] = [];
   done: ToDo[] = [];
 
   drop(event: CdkDragDrop<ToDo[]>) {
@@ -68,5 +81,12 @@ export class BoardComponent {
         event.currentIndex // se pasa el indice en la nueva lista
       );
     }
+  }
+
+  addColumn() {
+    this.columns.push({
+      title: 'New Column',
+      todos: []
+    });
   }
 }
