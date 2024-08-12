@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { ToDo } from '../../model/todo.model';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [NavbarComponent, CdkDrag, CdkDropList],
+  imports: [NavbarComponent, CdkDrag, CdkDropList, CdkDropListGroup],
   templateUrl: './board.component.html',
 
   // hay que poner estilos para que el drag and drop se vea bien
@@ -33,18 +33,40 @@ export class BoardComponent {
     },
     {
       id: '2',
-      title: 'Task 2'
+      title: 'Buy a unicorn'
     },
     {
       id: '3',
-      title: 'Task 3'
+      title: 'Quitar gasto de spotify en littio'
     }
-  ]
-  drop(event: CdkDragDrop<any[]>) {
+  ];
+
+  doing: ToDo[] = [
+    {
+      id: '4',
+      title: 'Task 4'
+    }
+  ];
+
+  done: ToDo[] = [];
+
+  drop(event: CdkDragDrop<ToDo[]>) {
     // el evento contiene informacion sobre el item que se esta moviendo -> en especial el previousIndex y el currentIndex
     console.log(event);
 
     // se usa la funcion moveItemInArray para mover el item en el array
-    moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
+    // moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
+
+    // ahora hay que diferenciar en que lista se esta moviendo el item
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data, // se pasa la anterior lista
+        event.container.data, // se pasa la nueva lista
+        event.previousIndex, // se pasa el indice del item en la lista anterior
+        event.currentIndex // se pasa el indice en la nueva lista
+      );
+    }
   }
 }
