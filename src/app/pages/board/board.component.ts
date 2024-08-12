@@ -94,11 +94,19 @@ export class BoardComponent {
     });
   }
 
-  openDialog() {
-    this.dialog.open(TodoModalComponent, {
+  openDialog(todo: ToDo) {
+    const dialogRef = this.dialog.open(TodoModalComponent, {
       minWidth: '250px',
       maxWidth: '50%',
       // autoFocus: true
+      // con data se pueden pasar datos al dialog
+      data: {
+        todo
+      }
     });
+
+    dialogRef.closed.subscribe((output) => {
+      console.log(output);
+    }); // se puede subscribir a la funcion closed para obtener el resultado del dialog
   }
 }
