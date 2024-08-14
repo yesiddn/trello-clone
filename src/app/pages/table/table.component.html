@@ -1,0 +1,42 @@
+<div class="flex flex-col h-screen">
+  <app-navbar></app-navbar>
+
+  <div class="w-full grow bg-white-600 px-4 pb-4">
+    <table cdk-table [dataSource]="products">
+      <!-- cdk-header-row: Defines the header row template that the table should use. -->
+      <!-- cdkHeaderRowDef: Defines a set of cells available for a table row. -->
+      <tr cdk-header-row *cdkHeaderRowDef="columns"></tr>
+
+      <!-- cdk-row: Defines the row template that the table should use. -->
+      <!-- cdkRowDef: Denife una variable para cada fila de la tabla junto a las columnas que se van a mostrar. -->
+      <tr cdk-row *cdkRowDef="let row; columns: columns"></tr>
+
+      <!-- id column -->
+      <ng-container cdkColumnDef="#No">
+        <th cdk-header-cell *cdkHeaderCellDef>Id</th>
+        <!-- en esta row ya se puede usar los datos que se iteran desde dataSource -->
+        <td cdk-cell *cdkCellDef="let row">{{ row.id }}</td>
+      </ng-container>
+
+      <!-- title column -->
+      <ng-container cdkColumnDef="Title">
+        <th cdk-header-cell *cdkHeaderCellDef>Title</th>
+        <td cdk-cell *cdkCellDef="let row">{{ row.title }}</td>
+      </ng-container>
+
+      <!-- price column -->
+      <ng-container cdkColumnDef="Price">
+        <th cdk-header-cell *cdkHeaderCellDef>Price</th>
+        <td cdk-cell *cdkCellDef="let row">{{ row.price }}</td>
+      </ng-container>
+
+      <!-- image column -->
+      <ng-container cdkColumnDef="Image">
+        <th cdk-header-cell *cdkHeaderCellDef>Image</th>
+        <td cdk-cell *cdkCellDef="let row">
+          <img [src]="row.images[0]" alt="product image" class="w-20 h-20">
+        </td>
+      </ng-container>
+    </table>
+  </div>
+</div>
