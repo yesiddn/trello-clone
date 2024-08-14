@@ -1,0 +1,30 @@
+<div class="flex flex-col h-screen">
+  <app-navbar></app-navbar>
+  <div class="w-full grow bg-sky-600 px-4 pb-4">
+    <div class="flex gap-4">
+      <div class="w-1/2">
+        <h2 class="text-white">List A (Normal scroll)</h2>
+        
+        <div class="h-64 w-full overflow-y-auto rounded mt-2 border">
+          @for (product of products; track product.id) {
+            <div class="flex items-center space-x-4 p-2">
+              <img
+                class="w-10 h-10 rounded-full"
+                [src]="product.images[0]"
+                alt=""
+              />
+              <div class="space-y-1 font-medium dark:text-white">
+                <div>{{ product.title }}</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">{{ product.price | currency }}</div>
+              </div>
+            </div>
+          }
+          </div>
+      </div>
+
+      <div class="w-1/2">
+        <h2 class="text-white">List B (Virtual scroll)</h2>
+      </div>
+    </div>
+  </div>
+</div>
