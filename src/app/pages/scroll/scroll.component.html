@@ -4,7 +4,7 @@
     <div class="flex gap-4">
       <div class="w-1/2">
         <h2 class="text-white">List A (Normal scroll)</h2>
-        
+
         <div class="h-64 w-full overflow-y-auto rounded mt-2 border">
           @for (product of products; track product.id) {
             <div class="flex items-center space-x-4 p-2">
@@ -24,6 +24,25 @@
 
       <div class="w-1/2">
         <h2 class="text-white">List B (Virtual scroll)</h2>
+
+        <!-- usando el cdk-virtual-scroll-viewport se usa el virtual scroll, pero es necesario pasar el itemSize para que funcione -->
+        <cdk-virtual-scroll-viewport itemSize="50" class="h-64 w-full overflow-y-auto rounded mt-2 border">
+
+          <!-- para que el virtual scroll funcione se debe usar el *cdkVirtualFor -->
+          <!-- @for (product of products; track product.id) { -->
+            <div class="flex items-center space-x-4 p-2" *cdkVirtualFor="let product of products">
+              <img
+                class="w-10 h-10 rounded-full"
+                [src]="product.images[0]"
+                alt=""
+              />
+              <div class="space-y-1 font-medium dark:text-white">
+                <div>{{ product.title }}</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">{{ product.price | currency }}</div>
+              </div>
+            </div>
+          <!-- } -->
+          </cdk-virtual-scroll-viewport>
       </div>
     </div>
   </div>
