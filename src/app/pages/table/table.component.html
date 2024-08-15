@@ -1,9 +1,9 @@
 <div class="flex flex-col h-screen">
   <app-navbar></app-navbar>
 
-  <div class="w-full grow bg-white-600 px-4 pb-4 ">
+  <div class="w-full grow bg-white-600 px-4 py-4 ">
     <h1 class="text-xl text-gray-700 font-semibold italic mb-6">Table</h1>
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500" cdk-table [dataSource]="products">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500" cdk-table [dataSource]="dataSourse">
       <!-- cdk-header-row: Defines the header row template that the table should use. -->
       <!-- cdkHeaderRowDef: Defines a set of cells available for a table row. -->
       <!-- aqui se definen los estilos a nivel de row head -->
@@ -28,7 +28,6 @@
         <th class="px-6 py-3" cdk-header-cell *cdkHeaderCellDef>Title</th>
         <td class="px-6 py-4 font-semibold text-gray-900" cdk-cell *cdkCellDef="let row">{{ row.title }}</td>
         <th class="px-6 py-3" cdk-footer-cell *cdkFooterCellDef></th>
-
       </ng-container>
 
       <!-- price column -->
@@ -44,6 +43,15 @@
         <th class="px-6 py-3" cdk-header-cell *cdkHeaderCellDef>Image</th>
         <td class="px-6 py-4" cdk-cell *cdkCellDef="let row">
           <img class="w-16 h-16 rounded-full" [src]="row.images[0]" alt="product image">
+        </td>
+        <th class="px-6 py-3" cdk-footer-cell *cdkFooterCellDef></th>
+      </ng-container>
+
+      <!-- actions column -->
+      <ng-container cdkColumnDef="Actions">
+        <th class="px-6 py-3" cdk-header-cell *cdkHeaderCellDef>Actions</th>
+        <td class="px-6 py-4 font-semibold text-gray-900" cdk-cell *cdkCellDef="let row">
+          <app-btn (click)="update(row)">Update</app-btn>
         </td>
         <th class="px-6 py-3" cdk-footer-cell *cdkFooterCellDef></th>
       </ng-container>
