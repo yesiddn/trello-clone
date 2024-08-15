@@ -32,10 +32,16 @@ export class DataSourceProduct extends DataSource<Product> {
 
   find(query: string) {
     const newProducts = this.originalData.filter(
-      (product) =>
-        product.title.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
-        product.id == query ||
-        product.price === Number(query)
+      // (product) =>
+      //   product.title.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
+      //   product.id == query ||
+      //   product.price === Number(query)
+
+      // solucion 2 a la busqueda en multiples columnas
+      (product) => {
+        const work = `${product.id} ${product.title} ${product.price}`;
+        return work.toLocaleLowerCase().includes(query.toLocaleLowerCase());
+      }
     );
     this.data.next(newProducts);
   }
