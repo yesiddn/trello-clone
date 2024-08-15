@@ -75,11 +75,13 @@
 <!-- se crea el template que se va a mostrar cuando se haga click en el boton y se envian las propiedades cdkConnectedOverlay y cdkConnectedOverlayOrigin en el que se le asigna el nombre que se le asigno en el #, y en cdkConnectedOverlayOpen se le asigna la variable que se va a cambiar que cambia el estado, ademas de otras propiedades que le dan funcionalidad al template -->
 <!-- (backdropClick)="isOpen = false"
   [cdkConnectedOverlayHasBackdrop]="true"
-  (detach)="isOpen = false" -->
+  (detach)="isOpen = false"
+  (outsideClick)="isOpen = false" cierra el menu cuando se hace click fuera del menu -->
 <ng-template
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="menuOverlay"
   [cdkConnectedOverlayOpen]="isOpen"
+  (overlayOutsideClick)="isOpen = false"
 >
   <div
     class="z-50 my-4 w-60 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
@@ -163,6 +165,7 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="workspaceOverlay"
   [cdkConnectedOverlayOpen]="isWorkspaceOpen"
+  (overlayOutsideClick)="isWorkspaceOpen = false"
 >
   <!-- Dropdown menu -->
   <div
@@ -217,6 +220,7 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="recentOverlay"
   [cdkConnectedOverlayOpen]="isRecentOpen"
+  (overlayOutsideClick)="isRecentOpen = false"
 >
   <!-- Dropdown menu -->
   <div
