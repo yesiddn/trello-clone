@@ -8,6 +8,8 @@ import { Component, Input } from '@angular/core';
   templateUrl: './btn.component.html'
 })
 export class BtnComponent {
+  @Input() disabled = false;
+  @Input() loading = false;
   @Input() typeBtn: ('submit' | 'button' | 'reset') = 'button';
   @Input() color: keyof typeof this.mapColors = 'primary';
 
