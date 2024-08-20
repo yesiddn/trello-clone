@@ -1,10 +1,12 @@
 import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-btn',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, FontAwesomeModule],
   templateUrl: './btn.component.html'
 })
 export class BtnComponent {
@@ -12,6 +14,7 @@ export class BtnComponent {
   @Input() loading = false;
   @Input() typeBtn: ('submit' | 'button' | 'reset') = 'button';
   @Input() color: keyof typeof this.mapColors = 'primary';
+  faSpinner = faSpinner;
 
   mapColors = {
     success: 'text-white bg-success-500 hover:bg-success-600 focus:ring-success-300',
