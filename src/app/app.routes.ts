@@ -5,6 +5,7 @@ import { BoardComponent } from './pages/board/board.component';
 import { ScrollComponent } from './pages/scroll/scroll.component';
 import { TableComponent } from './pages/table/table.component';
 import { LayoutComponent } from './modules/shared/components/layout/layout.component';
+import { RegisterComponent } from './modules/auth/pages/register/register.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,11 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     title: 'Login'
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    title: 'Register'
   },
   {
     path: 'app',
