@@ -67,6 +67,13 @@
       </div>
     }
   </div>
+    @if (status === 'failed') {
+      <div>
+        <p class="font-medium text-red-500 text-xs mt-1 ml-1">
+          Credentials are invalid
+        </p>
+      </div>
+    }
   <div>
     <app-btn typeBtn="submit" color="success" [loading]="status === 'loading'"
       >Login</app-btn
