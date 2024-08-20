@@ -19,6 +19,10 @@ export class RegisterFormComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
 
+  formUserValidate = this.formBuilder.nonNullable.group({
+    email: ['', [Validators.required, Validators.email]]
+  });
+
   form = this.formBuilder.nonNullable.group({
     name: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
@@ -29,10 +33,12 @@ export class RegisterFormComponent {
   });
 
   status: RequestStatus = 'init';
+  statusUserValidate: RequestStatus = 'init';
   faEye = faEye;
   faEyeSlash = faEyeSlash;
   showPassword = false;
   errorMessage: string = '';
+  showRegisterForm = false;
 
   register() {
     if (this.form.valid) {
@@ -60,6 +66,29 @@ export class RegisterFormComponent {
       })
     } else {
       this.form.markAllAsTouched();
+    }
+  }
+
+  validateUser() {
+    if (this.formUserValidate.valid) {
+      this.statusUserValidate = 'loading';
+      const { email } = this.formUserValidate.getRawValue();
+      this.authService.isAvailable(email).subscribe({
+        next: (response) => {
+          this.statusUserValidate = 'success';
+          if (response.isAvailable) {
+            this.showRegisterForm = true;
+            this.form.controls.email.setValue(email);
+          } else {
+            this.router.navigate(['/login'], { queryParams: { email } });
+          }
+        },
+        error: () => {
+          this.statusUserValidate = 'failed';
+        }
+      })
+    } else {
+      this.formUserValidate.markAllAsTouched();
     }
   }
 }

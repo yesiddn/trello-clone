@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEye, faEyeSlash, faPen } from '@fortawesome/free-solid-svg-icons';
 import { BtnComponent } from '../../../../components/btn/btn.component';
 import { AuthService } from '../../../../services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RequestStatus } from '../../../../model/request-status.model';
 
 @Component({
@@ -17,6 +17,7 @@ export class LoginFormComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   form = this.formBuilder.nonNullable.group({
     email: ['', [Validators.email, Validators.required]],
@@ -28,6 +29,18 @@ export class LoginFormComponent {
   faEyeSlash = faEyeSlash;
   showPassword = false;
   status: RequestStatus = 'init';
+
+  constructor() {
+    this.route.queryParamMap.subscribe({
+      next: (params) => {
+        const email = params.get('email');
+
+        if (email) {
+          this.form.controls.email.setValue(email);
+        }
+      },
+    });
+  }
 
   doLogin() {
     if (this.form.valid) {
