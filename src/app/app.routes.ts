@@ -40,6 +40,11 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'boards',
+        pathMatch: 'full'
+      },
+      {
         path: 'boards',
         loadComponent: () => import('./pages/boards/boards.component').then(m => m.BoardsComponent)
       }
