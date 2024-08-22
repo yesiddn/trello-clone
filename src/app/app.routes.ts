@@ -7,6 +7,7 @@ import { TableComponent } from './pages/table/table.component';
 import { LayoutComponent } from './modules/shared/components/layout/layout.component';
 import { RegisterComponent } from './modules/auth/pages/register/register.component';
 import { ForgotPasswordComponent } from './modules/auth/pages/forgot-password/forgot-password.component';
+import { RecoveryComponent } from './modules/auth/pages/recovery/recovery.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,11 @@ export const routes: Routes = [
     path: 'forgot-password',
     component: ForgotPasswordComponent,
     title: 'Forgot Password'
+  },
+  {
+    path: 'recovery',
+    component: RecoveryComponent,
+    title: 'Recovery'
   },
   {
     path: 'app',
