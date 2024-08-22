@@ -8,6 +8,7 @@ import { LayoutComponent } from './modules/shared/components/layout/layout.compo
 import { RegisterComponent } from './modules/auth/pages/register/register.component';
 import { ForgotPasswordComponent } from './modules/auth/pages/forgot-password/forgot-password.component';
 import { RecoveryComponent } from './modules/auth/pages/recovery/recovery.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,7 @@ export const routes: Routes = [
   {
     path: 'app',
     component: LayoutComponent,
+    canActivate: [ authGuard ],
     children: [
       {
         path: '',
@@ -50,10 +52,10 @@ export const routes: Routes = [
       }
     ]
   },
-  {
-    path: 'boards',
-    component: BoardsComponent
-  },
+  // {
+  //   path: 'boards',
+  //   component: BoardsComponent
+  // },
   {
     path: 'board',
     component: BoardComponent
