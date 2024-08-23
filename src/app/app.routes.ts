@@ -9,32 +9,39 @@ import { RegisterComponent } from './modules/auth/pages/register/register.compon
 import { ForgotPasswordComponent } from './modules/auth/pages/forgot-password/forgot-password.component';
 import { RecoveryComponent } from './modules/auth/pages/recovery/recovery.component';
 import { authGuard } from './guards/auth.guard';
+import { redirectGuard } from './guards/redirect.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    title: 'Login'
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    title: 'Register'
-  },
-  {
-    path: 'forgot-password',
-    component: ForgotPasswordComponent,
-    title: 'Forgot Password'
-  },
-  {
-    path: 'recovery',
-    component: RecoveryComponent,
-    title: 'Recovery'
+    canActivate: [ redirectGuard ],
+    children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+        title: 'Login'
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        title: 'Register'
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+        title: 'Forgot Password'
+      },
+      {
+        path: 'recovery',
+        component: RecoveryComponent,
+        title: 'Recovery'
+      },
+    ],
   },
   {
     path: 'app',
