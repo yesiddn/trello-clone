@@ -31,3 +31,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ```bash
 ng generate guard guards/auth
 ```
+
+## Guardar el token en una cookie
+
+Para manejar el token de autenticación, se guardará en una cookie. Para ello, se instalará la librería `typescript-cookie` que es una adaptación de `js-cookie` con soporte para TypeScript.
+
+```bash
+npm install typescript-cookie
+```
