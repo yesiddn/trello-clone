@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBell, faChevronDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { User } from '../../model/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -23,6 +24,19 @@ export class NavbarComponent {
   isOpen = false;
   isWorkspaceOpen = false;
   isRecentOpen = false;
+
+  user!: User;
+
+  ngOnInit() {
+    this.authService.profile().subscribe({
+      next: (user) => {
+        this.user = user;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
+  }
 
   logout() {
     this.authService.logout();
