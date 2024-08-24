@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '@enviroment';
 import { switchMap, tap } from 'rxjs';
 import { TokenService } from './token.service';
 import { ResponseLogin } from '../model/auth.model';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,13 @@ export class AuthService {
 
   changePassword(token: string, newPassword: string) {
     return this.http.post(`${this.apiURL}/api/v1/auth/change-password`, { token, newPassword });
+  }
+
+  profile() {
+    const token = this.tokenService.getToken();
+    let headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<User>(`${this.apiURL}/api/v1/auth/profile`, { headers });
   }
 
   logout() {
