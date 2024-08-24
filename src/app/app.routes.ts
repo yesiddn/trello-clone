@@ -56,6 +56,10 @@ export const routes: Routes = [
       {
         path: 'boards',
         loadComponent: () => import('./pages/boards/boards.component').then(m => m.BoardsComponent)
+      },
+      {
+        path: 'users',
+        loadComponent: () => import('./modules/users/pages/users-table/users-table.component').then(m => m.UsersTableComponent)
       }
     ]
   },
