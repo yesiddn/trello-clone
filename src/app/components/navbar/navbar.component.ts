@@ -25,18 +25,18 @@ export class NavbarComponent {
   isWorkspaceOpen = false;
   isRecentOpen = false;
 
-  user!: User;
+  user = this.authService.user;
 
-  ngOnInit() {
-    this.authService.profile().subscribe({
-      next: (user) => {
-        this.user = user;
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    })
-  }
+  // ngOnInit() {
+  //   this.authService.profile().subscribe({
+  //     next: (user) => {
+  //       this.user = user;
+  //     },
+  //     error: (error) => {
+  //       console.error(error);
+  //     }
+  //   })
+  // }
 
   logout() {
     this.authService.logout();

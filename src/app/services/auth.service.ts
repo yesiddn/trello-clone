@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '@enviroment';
-import { switchMap, tap } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { TokenService } from './token.service';
 import { ResponseLogin } from '../model/auth.model';
 import { User } from '../model/user.model';
@@ -13,6 +13,11 @@ export class AuthService {
   private http = inject(HttpClient);
   private tokenService = inject(TokenService);
   apiURL = environment.API_URL;
+  // se crea un observable para guardar la información del usuario y por lo general se usa el signo de dolar al final para indicar que es un observable
+  // user$ = new BehaviorSubject<User | null>(null); // se inicializa con null porque no se sabe si el usuario está autenticado o no
+
+  // mi solucion usando signals ya que BehaviorSubject se trata de una forma mas compleja
+  user = signal<User | null>(null);
 
   constructor() { }
 
@@ -54,7 +59,12 @@ export class AuthService {
     const token = this.tokenService.getToken();
     let headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get<User>(`${this.apiURL}/api/v1/auth/profile`, { headers });
+    return this.http.get<User>(`${this.apiURL}/api/v1/auth/profile`, { headers })
+      .pipe(
+        tap(user => {
+          this.user.set(user);
+        })
+      );
   }
 
   logout() {
