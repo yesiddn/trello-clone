@@ -46,7 +46,7 @@ export const routes: Routes = [
   {
     path: 'app',
     component: LayoutComponent,
-    canActivate: [ authGuard ],
+    canActivate: [ authGuard ], // aqui solo le haria la verificacion cuando cambiamos de /login a /app, si cambiamos de /app/boards a /app/users no se haria la verificacion
     children: [
       {
         path: '',
@@ -55,10 +55,12 @@ export const routes: Routes = [
       },
       {
         path: 'boards',
+        canActivate: [ authGuard ], // se usar el guardian en todas las rutas hijas para que se aplique a todas las rutas hijas, por lo que si cambiamos de /app/boards a /app/users se hara la verificacion
         loadComponent: () => import('./pages/boards/boards.component').then(m => m.BoardsComponent)
       },
       {
         path: 'users',
+        canActivate: [ authGuard ],
         loadComponent: () => import('./modules/users/pages/users-table/users-table.component').then(m => m.UsersTableComponent)
       }
     ]
