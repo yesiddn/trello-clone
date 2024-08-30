@@ -29,6 +29,7 @@ export class AuthService {
         // tap es un operador que nos permite hacer algo antes de devolver la respuesta sin afectar el flujo de datos
         tap(response => {
           this.tokenService.saveToken(response.access_token);
+          this.tokenService.saveRefreshToken(response.refresh_token);
         })
       );
   }
