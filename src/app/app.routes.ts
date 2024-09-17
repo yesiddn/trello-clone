@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './modules/auth/pages/login/login.component';
-import { BoardsComponent } from './pages/boards/boards.component';
+// import { BoardsComponent } from './pages/boards/boards.component';
 import { BoardComponent } from './pages/board/board.component';
 import { ScrollComponent } from './pages/scroll/scroll.component';
 import { TableComponent } from './pages/table/table.component';
@@ -56,7 +56,7 @@ export const routes: Routes = [
       {
         path: 'boards',
         canActivate: [ authGuard ], // se usar el guardian en todas las rutas hijas para que se aplique a todas las rutas hijas, por lo que si cambiamos de /app/boards a /app/users se hara la verificacion
-        loadComponent: () => import('./pages/boards/boards.component').then(m => m.BoardsComponent)
+        loadComponent: () => import('./modules/boards/boards.component').then(m => m.BoardsComponent)
       },
       {
         path: 'users',
