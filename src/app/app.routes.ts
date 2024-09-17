@@ -56,7 +56,7 @@ export const routes: Routes = [
       {
         path: 'boards',
         canActivate: [ authGuard ], // se usar el guardian en todas las rutas hijas para que se aplique a todas las rutas hijas, por lo que si cambiamos de /app/boards a /app/users se hara la verificacion
-        loadComponent: () => import('./modules/boards/boards.component').then(m => m.BoardsComponent)
+        loadComponent: () => import('./modules/boards/pages/boards/boards.component').then(m => m.BoardsComponent)
       },
       {
         path: 'users',
