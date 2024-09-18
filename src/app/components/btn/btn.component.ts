@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { COLORS, Colors } from '../../model/colors.model';
 
 @Component({
   selector: 'app-btn',
@@ -13,15 +14,17 @@ export class BtnComponent {
   @Input() disabled = false;
   @Input() loading = false;
   @Input() typeBtn: ('submit' | 'button' | 'reset') = 'button';
-  @Input() color: keyof typeof this.mapColors = 'primary';
+  @Input() color: Colors = 'primary';
   faSpinner = faSpinner;
 
-  mapColors = {
-    success: 'text-white bg-success-500 hover:bg-success-600 focus:ring-success-300',
-    danger: 'text-white bg-red-500 hover:bg-red-600 focus:ring-red-300',
-    primary: 'text-white bg-primary-500 hover:bg-primary-600 focus:ring-primary-300',
-    'gray-light': 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-100'
-  };
+  // mapColors = {
+  //   success: 'text-white bg-success-500 hover:bg-success-600 focus:ring-success-300',
+  //   danger: 'text-white bg-red-500 hover:bg-red-600 focus:ring-red-300',
+  //   primary: 'text-white bg-primary-500 hover:bg-primary-600 focus:ring-primary-300',
+  //   'gray-light': 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-100'
+  // };
+
+  mapColors = COLORS;
 
   get colors() {
     // de esta forma hacemos que tailwind incluya las clases de colores en el boundle final y las podamos usar dinamicamente
