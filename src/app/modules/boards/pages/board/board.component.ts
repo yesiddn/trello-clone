@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { Column, ToDo } from '../../model/todo.model';
-import { TodoModalComponent } from '../../components/todo-modal/todo-modal.component';
+import { Column, ToDo } from '../../../../model/todo.model';
+import { TodoModalComponent } from '../../../../components/todo-modal/todo-modal.component';
+import { NavbarComponent } from '../../../../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-board',

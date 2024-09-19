@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './modules/auth/pages/login/login.component';
 // import { BoardsComponent } from './pages/boards/boards.component';
-import { BoardComponent } from './pages/board/board.component';
+import { BoardsComponent } from './modules/boards/pages/boards/boards.component';
 import { ScrollComponent } from './pages/scroll/scroll.component';
 import { TableComponent } from './pages/table/table.component';
 import { LayoutComponent } from './modules/shared/components/layout/layout.component';
@@ -59,6 +59,11 @@ export const routes: Routes = [
         loadComponent: () => import('./modules/boards/pages/boards/boards.component').then(m => m.BoardsComponent)
       },
       {
+        path: 'board/:id',
+        canActivate: [authGuard],
+        loadComponent: () => import('./modules/boards/pages/board/board.component').then(m => m.BoardComponent)
+      },
+      {
         path: 'users',
         canActivate: [ authGuard ],
         loadComponent: () => import('./modules/users/pages/users-table/users-table.component').then(m => m.UsersTableComponent)
@@ -71,7 +76,7 @@ export const routes: Routes = [
   // },
   {
     path: 'board',
-    component: BoardComponent
+    component: BoardsComponent
   },
   {
     path: 'scroll',
