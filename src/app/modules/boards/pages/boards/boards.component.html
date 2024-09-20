@@ -160,7 +160,7 @@
 
     <div class="grid grid-cols-4 gap-4">
       @for (board of boards; track board.id) {
-        <a [routerLink]="['/app/boards', board.id]" >
+        <a [routerLink]="['/app/board', board.id]" >
           <app-card-color [color]="board.backgroundColor">
             {{ board.title }}
           </app-card-color>
