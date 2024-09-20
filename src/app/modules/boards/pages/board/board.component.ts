@@ -2,8 +2,12 @@ import { Component, inject } from '@angular/core';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { Column, ToDo } from '../../../../model/todo.model';
-import { TodoModalComponent } from '../../../../components/todo-modal/todo-modal.component';
+import { TodoModalComponent as CardModalComponent } from '../../../../components/todo-modal/todo-modal.component';
 import { NavbarComponent } from '../../../../components/navbar/navbar.component';
+import { ActivatedRoute } from '@angular/router';
+import { BoardsService } from '../../../../services/boards.service';
+import { Board } from '../../../../model/board.model';
+import { Card } from '../../../../model/card.model';
 
 @Component({
   selector: 'app-board',
@@ -29,45 +33,60 @@ import { NavbarComponent } from '../../../../components/navbar/navbar.component'
 })
 export class BoardComponent {
   private dialog = inject(Dialog);
+  private route = inject(ActivatedRoute);
+  private boardService = inject(BoardsService);
 
-  columns: Column[] = [
-    {
-      title: 'To Do',
-      todos: [
-        {
-          id: '1',
-          title: 'Task 1'
-        },
-        {
-          id: '2',
-          title: 'Buy a unicorn'
-        },
-        {
-          id: '3',
-          title: 'Sell a oven'
-        }
-      ]
-    },
-    {
-      title: 'Doing',
-      todos: [
-        {
-          id: '4',
-          title: 'Task 4'
-        }
-      ]
-    },
-    {
-      title: 'Done',
-      todos: []
-    }
-  ];
+  board: Board | null = null;
+  // columns: Column[] = [
+  //   {
+  //     title: 'To Do',
+  //     todos: [
+  //       {
+  //         id: '1',
+  //         title: 'Task 1'
+  //       },
+  //       {
+  //         id: '2',
+  //         title: 'Buy a unicorn'
+  //       },
+  //       {
+  //         id: '3',
+  //         title: 'Sell a oven'
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     title: 'Doing',
+  //     todos: [
+  //       {
+  //         id: '4',
+  //         title: 'Task 4'
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     title: 'Done',
+  //     todos: []
+  //   }
+  // ];
 
   todos: ToDo[] = [];
   doing: ToDo[] = [];
   done: ToDo[] = [];
 
-  drop(event: CdkDragDrop<ToDo[]>) {
+  ngOnInit() {
+    this.route.paramMap.subscribe({
+      next: (params) => {
+        const id = params.get('id');
+        if (id) {
+          this.getBoard(id);
+        }
+      }
+    });
+  }
+
+  // drop(event: CdkDragDrop<ToDo[]>) {
+  drop(event: CdkDragDrop<Card[]>) {
     // el evento contiene informacion sobre el item que se esta moviendo -> en especial el previousIndex y el currentIndex
     console.log(event);
 
@@ -88,25 +107,37 @@ export class BoardComponent {
   }
 
   addColumn() {
-    this.columns.push({
-      title: 'New Column',
-      todos: []
-    });
+    // this.columns.push({
+    //   title: 'New Column',
+    //   todos: []
+    // });
   }
 
-  openDialog(todo: ToDo) {
-    const dialogRef = this.dialog.open(TodoModalComponent, {
+  // openDialog(todo: ToDo) {
+  openDialog(card: Card) {
+    const dialogRef = this.dialog.open(CardModalComponent, {
       minWidth: '250px',
       maxWidth: '50%',
       // autoFocus: true
       // con data se pueden pasar datos al dialog
       data: {
-        todo
+        card
       }
     });
 
     dialogRef.closed.subscribe((output) => {
       console.log(output);
     }); // se puede subscribir a la funcion closed para obtener el resultado del dialog
+  }
+
+  private getBoard(id: string) {
+    this.boardService.getBoard(id).subscribe({
+      next: (board) => {
+        this.board = board;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
   }
 }

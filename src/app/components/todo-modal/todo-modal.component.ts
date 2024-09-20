@@ -4,9 +4,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faClose, faCheckToSlot, faBars, faUser, faTag, faCheckSquare, faClock } from '@fortawesome/free-solid-svg-icons';
 import { BtnComponent } from '../btn/btn.component';
 import { ToDo } from '../../model/todo.model';
+import { Card } from '../../model/card.model';
 
 interface InputData {
-  todo: ToDo;
+  // todo: ToDo;
+  card: Card;
 }
 
 interface OutputData {
@@ -31,7 +33,8 @@ export class TodoModalComponent {
   faCheckSquare = faCheckSquare;
   faClock = faClock;
 
-  todo: ToDo = this.data.todo; // se puede recibir el id del todo y buscarlo en una api para obtener mas informacion
+  // todo: ToDo = this.data.todo; // se puede recibir el id del todo y buscarlo en una api para obtener mas informacion
+  card: Card = this.data.card;
 
   close() {
     this.dialogRef.close({
