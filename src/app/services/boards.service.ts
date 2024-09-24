@@ -13,6 +13,7 @@ import { Card } from '../model/card.model';
 export class BoardsService {
   private http = inject(HttpClient);
   apiURL = environment.API_URL;
+  bufferSpace = 65535;
 
   constructor() { }
 
@@ -23,20 +24,24 @@ export class BoardsService {
   getPosition(cards: Card[], currentIndex: number) {
     console.log(cards);
     if (cards.length === 1) {
-      return 'is new';
+      return this.bufferSpace;
     }
 
     if (currentIndex === 0 && cards.length > 1) {
-      return 'is first';
+      const onTopPosition = cards[1].position;
+      return onTopPosition / 2;
     }
 
     const lastIndex = cards.length - 1;
     if (cards.length > 2 && currentIndex > 0 && currentIndex < lastIndex) {
-      return 'in the middle';
+      const prevPosition = cards[currentIndex - 1].position;
+      const nextPosition = cards[currentIndex + 1].position;
+      return (prevPosition + nextPosition) / 2;
     }
 
     if (cards.length > 1 && currentIndex === lastIndex) {
-      return 'is last';
+      const onBottomPosition = cards[lastIndex - 2].position;
+      return onBottomPosition + this.bufferSpace;
     }
 
     return 0;
