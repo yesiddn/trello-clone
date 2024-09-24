@@ -88,7 +88,7 @@ export class BoardComponent {
   // drop(event: CdkDragDrop<ToDo[]>) {
   drop(event: CdkDragDrop<Card[]>) {
     // el evento contiene informacion sobre el item que se esta moviendo -> en especial el previousIndex y el currentIndex
-    console.log(event);
+    // console.log(event);
 
     // se usa la funcion moveItemInArray para mover el item en el array
     // moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
@@ -104,6 +104,9 @@ export class BoardComponent {
         event.currentIndex // se pasa el indice en la nueva lista
       );
     }
+
+    const position = this.boardService.getPosition(event.container.data, event.currentIndex);
+    console.log(position);
   }
 
   addColumn() {
