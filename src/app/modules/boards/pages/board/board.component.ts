@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BoardsService } from '../../../../services/boards.service';
 import { Board } from '../../../../model/board.model';
 import { Card } from '../../../../model/card.model';
+import { CardsService } from '../../../../services/cards.service';
 
 @Component({
   selector: 'app-board',
@@ -35,6 +36,7 @@ export class BoardComponent {
   private dialog = inject(Dialog);
   private route = inject(ActivatedRoute);
   private boardService = inject(BoardsService);
+  private cardService = inject(CardsService);
 
   board: Board | null = null;
   // columns: Column[] = [
@@ -106,7 +108,9 @@ export class BoardComponent {
     }
 
     const position = this.boardService.getPosition(event.container.data, event.currentIndex);
-    console.log(position);
+    const card = event.container.data[event.currentIndex];
+
+    this.updateCard(card, position);
   }
 
   addColumn() {
@@ -142,5 +146,17 @@ export class BoardComponent {
         console.error(error);
       }
     })
+  }
+
+  private updateCard(card: Card, position: number) {
+    this.cardService.update(card.id, { position })
+    .subscribe({
+      next: (updatedCard) => {
+        console.log(updatedCard);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
 }
