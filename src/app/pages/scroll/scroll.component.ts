@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { NavbarComponent } from '../../modules/shared/components/navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
 import { CurrencyPipe } from '@angular/common';
 import { ScrollingModule } from '@angular/cdk/scrolling';

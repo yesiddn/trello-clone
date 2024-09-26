@@ -3,7 +3,7 @@ import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, t
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { Column, ToDo } from '../../../../model/todo.model';
 import { TodoModalComponent as CardModalComponent } from '../../../../components/todo-modal/todo-modal.component';
-import { NavbarComponent } from '../../../../components/navbar/navbar.component';
+import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 import { ActivatedRoute } from '@angular/router';
 import { BoardsService } from '../../../../services/boards.service';
 import { Board } from '../../../../model/board.model';

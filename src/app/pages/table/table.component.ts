@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { NavbarComponent } from '../../modules/shared/components/navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../model/product.model';
 import {CdkTableModule} from '@angular/cdk/table';

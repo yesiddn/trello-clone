@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BackgroundComponent } from '../../components/background/background.component';
-import { NavbarComponent } from '../../../../components/navbar/navbar.component';
+import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { RegisterFormComponent } from '../../components/register-form/register-form.component';

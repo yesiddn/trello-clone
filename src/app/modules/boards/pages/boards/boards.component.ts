@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { NavbarComponent } from '../../../../components/navbar/navbar.component';
+import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faAngleDown, faAngleUp, faBorderAll, faBox, faClock, faGear, faHeart, faUsers, faWaveSquare } from '@fortawesome/free-solid-svg-icons';

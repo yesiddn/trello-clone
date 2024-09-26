@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { BtnComponent } from '../btn/btn.component';
+import { BtnComponent } from '../../../../components/btn/btn.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBell, faChevronDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
-import { User } from '../../model/user.model';
+import { User } from '../../../../model/user.model';
 
 @Component({
   selector: 'app-navbar',
