@@ -26,87 +26,103 @@
     }
   </div>
 
-  <div class="flex flex-wrap">
-    <div class="flex items-center me-4">
+  <div class="flex flex-wrap gap-2">
+    <div class="flex items-center">
       <input
         id="sky-radio"
         type="radio"
         value="sky"
         name="backgroundColor"
-        checked
         formControlName="backgroundColor"
-        class="w-4 h-4 text-sky-600 bg-gray-100 border-gray-300 focus:ring-sky-500 focus:ring-2"
+        class="hidden peer"
       />
-      <label for="sky-radio" class="ms-2 text-sm font-medium text-gray-900"
-        >Sky</label
+      <label
+        for="sky-radio"
+        class="inline-flex items-center justify-center w-16 h-8 text-transparent border border-gray-200 rounded cursor-pointer bg-sky-700 hover:bg-sky-500 peer-checked:text-white"
       >
+        <fa-icon [icon]="faCheck"></fa-icon>
+      </label>
     </div>
-    <div class="flex items-center me-4">
+    <div class="flex items-center">
       <input
         id="yellow-radio"
         type="radio"
         value="yellow"
         name="backgroundColor"
         formControlName="backgroundColor"
-        class="w-4 h-4 text-yellow-600 bg-gray-100 border-gray-300 focus:ring-yellow-500 focus:ring-2"
+        class="hidden peer"
       />
-      <label for="yellow-radio" class="ms-2 text-sm font-medium text-gray-900"
-        >Yellow</label
+      <label
+        for="yellow-radio"
+        class="inline-flex items-center justify-center w-16 h-8 text-transparent border border-gray-200 rounded cursor-pointer bg-yellow-700 hover:bg-yellow-500 peer-checked:text-white"
       >
+        <fa-icon [icon]="faCheck"></fa-icon>
+      </label>
     </div>
-    <div class="flex items-center me-4">
+    <div class="flex items-center">
       <input
         id="red-radio"
         type="radio"
         value="red"
         name="backgroundColor"
         formControlName="backgroundColor"
-        class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2"
+        class="hidden peer"
       />
-      <label for="red-radio" class="ms-2 text-sm font-medium text-gray-900"
-        >Red</label
+      <label
+        for="red-radio"
+        class="inline-flex items-center justify-center w-16 h-8 text-transparent border border-gray-200 rounded cursor-pointer bg-red-700 hover:bg-red-500 peer-checked:text-white"
       >
+        <fa-icon [icon]="faCheck"></fa-icon>
+      </label>
     </div>
-    <div class="flex items-center me-4">
+    <div class="flex items-center">
       <input
         id="violet-radio"
         type="radio"
         value="violet"
         name="backgroundColor"
         formControlName="backgroundColor"
-        class="w-4 h-4 text-violet-600 bg-gray-100 border-gray-300 focus:ring-violet-500 focus:ring-2"
+        class="hidden peer"
       />
-      <label for="violet-radio" class="ms-2 text-sm font-medium text-gray-900"
-        >Violet</label
+      <label
+        for="violet-radio"
+        class="inline-flex items-center justify-center w-16 h-8 text-transparent border border-gray-200 rounded cursor-pointer bg-violet-700 hover:bg-violet-500 peer-checked:text-white"
       >
+        <fa-icon [icon]="faCheck"></fa-icon>
+      </label>
     </div>
-    <div class="flex items-center me-4">
+    <div class="flex items-center">
       <input
         id="gray-radio"
         type="radio"
         value="gray"
         name="backgroundColor"
         formControlName="backgroundColor"
-        class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 focus:ring-2"
+        class="hidden peer"
       />
-      <label for="gray-radio" class="ms-2 text-sm font-medium text-gray-900"
-        >Gray</label
+      <label
+        for="gray-radio"
+        class="inline-flex items-center justify-center w-16 h-8 text-transparent border border-gray-200 rounded cursor-pointer bg-gray-700 hover:bg-gray-500 peer-checked:text-white"
       >
+        <fa-icon [icon]="faCheck"></fa-icon>
+      </label>
     </div>
-    <div class="flex items-center me-4">
+    <div class="flex items-center">
       <input
         id="green-radio"
         type="radio"
         value="green"
         name="backgroundColor"
         formControlName="backgroundColor"
-        class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500 focus:ring-2"
+        class="hidden peer"
       />
-      <label for="green-radio" class="ms-2 text-sm font-medium text-gray-900"
-        >green</label
+      <label
+        for="green-radio"
+        class="inline-flex items-center justify-center w-16 h-8 text-transparent border border-gray-200 rounded cursor-pointer bg-green-700 hover:bg-green-500 peer-checked:text-white"
       >
+        <fa-icon [icon]="faCheck"></fa-icon>
+      </label>
     </div>
-
   </div>
 
   <div>
