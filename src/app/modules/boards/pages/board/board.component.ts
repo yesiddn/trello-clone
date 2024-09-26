@@ -109,8 +109,10 @@ export class BoardComponent {
 
     const position = this.boardService.getPosition(event.container.data, event.currentIndex);
     const card = event.container.data[event.currentIndex];
+    const listId = event.container.id
 
-    this.updateCard(card, position);
+    // console.log('list id:', listId); // cdk-drop-list-1 -> se asigna ese id automaticamente
+    this.updateCard(card, position, listId);
   }
 
   addColumn() {
@@ -148,8 +150,8 @@ export class BoardComponent {
     })
   }
 
-  private updateCard(card: Card, position: number) {
-    this.cardService.update(card.id, { position })
+  private updateCard(card: Card, position: number, listId: string) {
+    this.cardService.update(card.id, { position, listId })
     .subscribe({
       next: (updatedCard) => {
         console.log(updatedCard);

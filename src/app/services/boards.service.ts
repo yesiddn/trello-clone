@@ -40,7 +40,7 @@ export class BoardsService {
     }
 
     if (cards.length > 1 && currentIndex === lastIndex) {
-      const onBottomPosition = cards[lastIndex - 2].position;
+      const onBottomPosition = cards[lastIndex - 1].position;
       return onBottomPosition + this.bufferSpace;
     }
 

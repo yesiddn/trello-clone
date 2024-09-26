@@ -87,7 +87,9 @@
             <h3 class="text-sm font-bold ml-2">{{ list.title }}</h3>
           </div>
 
+          <!-- de esas forma se asigna el id manualmente -->
           <div
+            [id]="list.id"
             cdkDropList
             (cdkDropListDropped)="drop($event)"
             [cdkDropListData]="list.cards"
