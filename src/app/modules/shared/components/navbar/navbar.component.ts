@@ -5,12 +5,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBell, faChevronDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
-import { User } from '../../../../model/user.model';
+import { NewBoardFormComponent } from "../new-board-form/new-board-form.component";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [BtnComponent, OverlayModule, FontAwesomeModule],
+  imports: [BtnComponent, OverlayModule, FontAwesomeModule, NewBoardFormComponent],
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
@@ -24,6 +24,7 @@ export class NavbarComponent {
   isOpen = false;
   isWorkspaceOpen = false;
   isRecentOpen = false;
+  isCreateBoardOpen = false;
 
   user = this.authService.user;
 
