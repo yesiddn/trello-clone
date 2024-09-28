@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BtnComponent } from "../../../../components/btn/btn.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -18,6 +18,7 @@ export class NewBoardFormComponent {
   private boardService = inject(BoardsService);
   private router = inject(Router);
 
+  @Output() closeOverlay = new EventEmitter<boolean>();
   faCheck = faCheck;
   form = this.formBuilder.nonNullable.group({
     title: ['', [Validators.required]],
@@ -36,6 +37,7 @@ export class NewBoardFormComponent {
         .subscribe({
           next: (board) => {
             console.log('Board created', board);
+            this.closeOverlay.emit(false);
             this.router.navigate(['/app/board', board.id]);
           },
           error: (error) => {
