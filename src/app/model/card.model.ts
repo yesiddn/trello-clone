@@ -21,3 +21,16 @@ export interface UpdateCardDto extends Partial<Omit<Card, 'id' | 'list'>> {
   listId?: number | string;
   boardId?: string;
 }
+
+// export interface CreateCardDto {
+//   title: string;
+//   description?: string;
+//   position: number;
+//   listId: List['id'];
+//   boardId: Board['id'];
+// }
+
+export interface CreateCardDto extends Omit<Card, 'id' | 'list'> {
+  listId: List['id'];
+  boardId: Board['id'];
+}
