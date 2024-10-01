@@ -48,6 +48,11 @@ export class BoardComponent {
     nonNullable: true,
     validators: [Validators.required]
   });
+  inputList = new FormControl<string>('', {
+    nonNullable: true,
+    validators: [Validators.required]
+  });
+  showListForm = false;
   faClose = faClose;
   // columns: Column[] = [
   //   {
@@ -125,11 +130,14 @@ export class BoardComponent {
     this.updateCard(card, position, listId);
   }
 
-  addColumn() {
+  addList() {
     // this.columns.push({
     //   title: 'New Column',
     //   todos: []
     // });
+
+    const title = this.inputList.value;
+    console.log('title:', title);
   }
 
   // openDialog(todo: ToDo) {
