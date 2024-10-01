@@ -11,11 +11,14 @@ import { Card } from '../../../../model/card.model';
 import { CardsService } from '../../../../services/cards.service';
 import { BtnComponent } from '../../../../components/btn/btn.component';
 import { List } from '../../../../model/list.model';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [NavbarComponent, BtnComponent, CdkDrag, CdkDropList, CdkDropListGroup],
+  imports: [NavbarComponent, BtnComponent, ReactiveFormsModule, CdkDrag, CdkDropList, CdkDropListGroup, FontAwesomeModule],
   templateUrl: './board.component.html',
 
   // hay que poner estilos para que el drag and drop se vea bien
@@ -41,6 +44,11 @@ export class BoardComponent {
   private cardService = inject(CardsService);
 
   board: Board | null = null;
+  inputCard = new FormControl<string>('', {
+    nonNullable: true,
+    validators: [Validators.required]
+  });
+  faClose = faClose;
   // columns: Column[] = [
   //   {
   //     title: 'To Do',
@@ -171,5 +179,14 @@ export class BoardComponent {
         showCardForm: l.id === list.id
       }));
     }
+  }
+
+  createCard() {
+    const title = this.inputCard.value;
+    console.log('title:', title);
+  }
+
+  closeFormCard(list: List) {
+    list.showCardForm = false;
   }
 }

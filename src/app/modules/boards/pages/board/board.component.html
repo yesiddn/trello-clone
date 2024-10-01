@@ -110,8 +110,16 @@
             @if (!list.showCardForm) {
               <app-btn color="gray-light" (click)="openFormCard(list)">Add card</app-btn>
             } @else {
-              <div>
-                active form
+              <div class="w-full">
+                <textarea [formControl]="inputCard" class="w-full rounded text-xs border-b-gray-400 border-b-2"
+                  placeholder="Enter a title for this card...">
+                </textarea>
+                <div class="flex space-x-2">
+                  <app-btn color="primary" (click)="createCard()">Add card</app-btn>
+                  <app-btn color="gray-light" (click)="closeFormCard(list)">
+                    <fa-icon [icon]="faClose"></fa-icon>
+                  </app-btn>
+                </div>
               </div>
             }
           </div>
