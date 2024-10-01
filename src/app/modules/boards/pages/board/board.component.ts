@@ -14,6 +14,7 @@ import { List } from '../../../../model/list.model';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { ListsService } from '../../../../services/lists.service';
 
 @Component({
   selector: 'app-board',
@@ -42,6 +43,7 @@ export class BoardComponent {
   private route = inject(ActivatedRoute);
   private boardService = inject(BoardsService);
   private cardService = inject(CardsService);
+  private listsService = inject(ListsService);
 
   board: Board | null = null;
   inputCard = new FormControl<string>('', {
@@ -137,7 +139,23 @@ export class BoardComponent {
     // });
 
     const title = this.inputList.value;
-    console.log('title:', title);
+    if (this.board) {
+      this.listsService.create({
+        title,
+        boardId: this.board.id,
+        position: this.boardService.getPostionNewItem(this.board.lists)
+      })
+        .subscribe({
+          next: (list) => {
+            this.board?.lists.push({
+              ...list,
+              cards: [],
+            });
+            this.showListForm = false;
+            this.inputList.setValue('');
+          }
+        });
+    }
   }
 
   // openDialog(todo: ToDo) {
@@ -197,7 +215,7 @@ export class BoardComponent {
         title,
         listId: list.id,
         boardId: this.board.id,
-        position: this.boardService.getPostionNewCard(list.cards)
+        position: this.boardService.getPostionNewItem(list.cards)
       })
         .subscribe({
           next: (card) => {
