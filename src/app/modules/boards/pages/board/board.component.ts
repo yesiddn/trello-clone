@@ -181,9 +181,27 @@ export class BoardComponent {
     }
   }
 
-  createCard() {
+  createCard(list: List) {
     const title = this.inputCard.value;
-    console.log('title:', title);
+
+    if (this.board) {
+      this.cardService.create({
+        title,
+        listId: list.id,
+        boardId: this.board.id,
+        position: this.boardService.getPostionNewCard(list.cards)
+      })
+        .subscribe({
+          next: (card) => {
+            list.cards.push(card);
+            this.inputCard.setValue('');
+            list.showCardForm = false;
+          },
+          error: (error) => {
+            console.error(error);
+          }
+        });
+    }
   }
 
   closeFormCard(list: List) {
