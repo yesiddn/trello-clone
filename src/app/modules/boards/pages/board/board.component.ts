@@ -9,11 +9,13 @@ import { BoardsService } from '../../../../services/boards.service';
 import { Board } from '../../../../model/board.model';
 import { Card } from '../../../../model/card.model';
 import { CardsService } from '../../../../services/cards.service';
+import { BtnComponent } from '../../../../components/btn/btn.component';
+import { List } from '../../../../model/list.model';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [NavbarComponent, CdkDrag, CdkDropList, CdkDropListGroup],
+  imports: [NavbarComponent, BtnComponent, CdkDrag, CdkDropList, CdkDropListGroup],
   templateUrl: './board.component.html',
 
   // hay que poner estilos para que el drag and drop se vea bien
@@ -160,5 +162,14 @@ export class BoardComponent {
         console.error(error);
       }
     });
+  }
+
+  openFormCard(list: List) {
+    if (this.board?.lists) {
+      this.board.lists = this.board.lists.map((l) => ({
+        ...l,
+        showCardForm: l.id === list.id
+      }));
+    }
   }
 }
