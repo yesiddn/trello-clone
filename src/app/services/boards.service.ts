@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 // import { TokenService } from './token.service';
 import { environment } from '@enviroment';
 import { User } from '../model/user.model';
@@ -16,11 +16,15 @@ export class BoardsService {
   private http = inject(HttpClient);
   apiURL = environment.API_URL;
   bufferSpace = 65535;
+  backgroundColor = signal<Colors>('violet');
 
   constructor() { }
 
   getBoard(id: Board['id']) {
-    return this.http.get<Board>(`${this.apiURL}/api/v1/boards/${id}`, { context: checkToken() });
+    return this.http.get<Board>(`${this.apiURL}/api/v1/boards/${id}`, { context: checkToken() })
+      // .pipe(
+      //   tap((board) => this.setBackgroudColor(board.backgroundColor))
+      // ); // se puede setear aqui, pero es mejor desacoplar la logica ya que en caso de usar este metodo en otro lugar se estaria seteando innecesariamente
   }
 
   createBoard(title: string, backgroundColor: Colors) {
@@ -61,5 +65,9 @@ export class BoardsService {
     const lastIndex = items.length - 1;
     const lastPosition = items[lastIndex].position;
     return lastPosition + this.bufferSpace;
+  }
+
+  setBackgroudColor(color: Colors) {
+    this.backgroundColor.set(color);
   }
 }
