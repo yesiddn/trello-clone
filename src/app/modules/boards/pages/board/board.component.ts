@@ -15,11 +15,13 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { ListsService } from '../../../../services/lists.service';
+import { BACKGROUND_COLORS } from '../../../../model/colors.model';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [NavbarComponent, BtnComponent, ReactiveFormsModule, CdkDrag, CdkDropList, CdkDropListGroup, FontAwesomeModule],
+  imports: [NavbarComponent, BtnComponent, ReactiveFormsModule, CdkDrag, CdkDropList, CdkDropListGroup, FontAwesomeModule, NgClass],
   templateUrl: './board.component.html',
 
   // hay que poner estilos para que el drag and drop se vea bien
@@ -56,6 +58,7 @@ export class BoardComponent {
   });
   showListForm = false;
   faClose = faClose;
+  backgroundColors = BACKGROUND_COLORS;
   // columns: Column[] = [
   //   {
   //     title: 'To Do',
@@ -232,5 +235,14 @@ export class BoardComponent {
 
   closeFormCard(list: List) {
     list.showCardForm = false;
+  }
+
+  get colors() {
+    if (this.board) {
+      const classes = this.backgroundColors[this.board.backgroundColor];
+      return classes ? classes : {};
+    }
+
+    return {};
   }
 }
