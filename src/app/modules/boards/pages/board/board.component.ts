@@ -107,6 +107,10 @@ export class BoardComponent {
     });
   }
 
+  ngOnDestroy() {
+    this.boardService.setBackgroudColor('sky');
+  }
+
   // drop(event: CdkDragDrop<ToDo[]>) {
   drop(event: CdkDragDrop<Card[]>) {
     // el evento contiene informacion sobre el item que se esta moviendo -> en especial el previousIndex y el currentIndex
@@ -182,6 +186,7 @@ export class BoardComponent {
     this.boardService.getBoard(id).subscribe({
       next: (board) => {
         this.board = board;
+        this.boardService.setBackgroudColor(this.board?.backgroundColor || 'sky'); // se puede setear desde aqui o desde el servicio
       },
       error: (error) => {
         console.error(error);
