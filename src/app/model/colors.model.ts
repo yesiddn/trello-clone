@@ -14,3 +14,16 @@ export const COLORS: ObjectColors = {
   primary: 'text-white bg-primary-500 hover:bg-primary-600 focus:ring-primary-300',
   'gray-light': 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-100'
 }
+
+export const BACKGROUND_COLORS: ObjectColors = {
+  sky: 'bg-sky-500',
+  yellow: 'bg-yellow-500',
+  green: 'bg-green-500',
+  red: 'bg-red-500',
+  violet: 'bg-violet-500',
+  gray: 'bg-gray-500',
+  success: 'bg-success-500',
+  danger: 'bg-red-500',
+  primary: 'bg-primary-500',
+  'gray-light': 'bg-gray-200'
+}
