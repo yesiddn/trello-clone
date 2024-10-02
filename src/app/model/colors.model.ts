@@ -27,3 +27,16 @@ export const BACKGROUND_COLORS: ObjectColors = {
   primary: 'bg-primary-500',
   'gray-light': 'bg-gray-200'
 }
+
+export const NAVBAR_BACKGROUND_COLORS: ObjectColors = {
+  sky: 'bg-sky-700',
+  yellow: 'bg-yellow-700',
+  green: 'bg-green-700',
+  red: 'bg-red-700',
+  violet: 'bg-violet-700',
+  gray: 'bg-gray-700',
+  success: 'bg-success-700',
+  danger: 'bg-red-700',
+  primary: 'bg-primary-700',
+  'gray-light': 'bg-gray-400'
+}
